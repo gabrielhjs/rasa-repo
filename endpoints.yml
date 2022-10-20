@@ -1,0 +1,15 @@
+tracker_store:
+  type: addons.tracker_store.LogTrackerStore
+  credential: "test credential"
+
+event_broker:
+  type: addons.event_brokers.LogEventBroker
+  credential: "test credential"
+
+lock_store:
+    type: "redis"
+    url: ${REDIS_HOST}
+    port: ${REDIS_PORT}
+    password: ${REDIS_PASSWORD}
+    db: 0
+    key_prefix: rasalock

@@ -1,0 +1,43 @@
+version: "3.1"
+
+intents:
+  - saudacao
+  - afirma
+  - nega
+  - despedida
+  - informa
+
+entities:
+  - PER
+
+slots:
+  handover:
+    type: bool
+    influence_conversation: false
+    initial_value: false
+    mappings:
+      - type: custom
+
+  user_name:
+    type: text
+    influence_conversation: true
+    mappings:
+      - type: from_entity
+        entity: PER
+
+responses:
+  utter_how_are_you:
+    - text: "Como você está, {user_name}?"
+
+  utter_greet:
+    - text: "Oi! Qual seu nome completo?"
+
+  utter_default:
+    - text: "I'm sorry, I can't help you."
+
+  utter_ask_rephrase:
+    - text: "I'm sorry, I didn't quite understand that. Could you rephrase?"
+
+session_config:
+  session_expiration_time: 1440
+  carry_over_slots_to_new_session: true

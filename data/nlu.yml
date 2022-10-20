@@ -1,0 +1,45 @@
+version: "3.1"
+
+nlu:
+- intent: saudacao
+  examples: |
+    - oi
+    - ola
+    - hey
+    - Oi
+    - Olá
+
+- intent: afirma
+  examples: |
+    - sim
+    - SIm
+    - uhum
+    - s
+    - S
+    - Simmmm
+    - simmmm
+    - ahannn
+    - ahaaannn
+
+- intent: nega
+  examples: |
+    - não
+    - nao
+    - N
+    - Não
+    - Nao
+    - Naoooooooooooooooooooo
+    - naoooooooooo
+
+- intent: despedida
+  examples: |
+    - tchau
+    - até mais
+    - até logo
+    - vou sair
+    - estou saindo
+
+- intent: informa
+  examples: |
+    - meu nome é Gabriel Henrique
+    - me chamo João Paulo

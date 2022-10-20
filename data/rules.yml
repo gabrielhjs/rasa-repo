@@ -1,0 +1,24 @@
+version: "3.1"
+
+rules:
+  - rule: Implementation of the Two-Stage-Fallback
+    steps:
+    - intent: nlu_fallback
+    - action: action_two_stage_fallback
+    - active_loop: action_two_stage_fallback
+
+  - rule: saudacao sem nome
+    condition:
+    - slot_was_set:
+      - user_name: null
+    steps:
+    - intent: saudacao
+    - action: utter_greet
+
+  - rule: saudacao com nome
+    condition:
+    - slot_was_set:
+      - user_name: "User Name"
+    steps:
+    - intent: saudacao
+    - action: utter_how_are_you

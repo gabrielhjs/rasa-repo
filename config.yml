@@ -1,0 +1,41 @@
+recipe: default.v1
+
+timezone: America/Sao_Paulo
+language: pt
+locale: pt_BR
+
+pipeline:
+  - name: SpacyNLP
+    model: pt_core_news_md
+    case_sensitive: false
+  - name: SpacyTokenizer
+  - name: SpacyEntityExtractor
+    dimensions: [ PER ]
+  - name: SpacyFeaturizer
+    pooling: mean
+  - name: LexicalSyntacticFeaturizer
+  - name: CountVectorsFeaturizer
+  - name: DIETClassifier
+    split_entities_by_comma: false
+    epochs: 300
+    constrain_similarities: true
+  - name: ResponseSelector
+    epochs: 100
+  - name: FallbackClassifier
+    threshold: 0.95
+    ambiguity_threshold: 0.2
+
+policies:
+  - name: RulePolicy
+    core_fallback_threshold: 0.6
+    core_fallback_action_name: "action_default_fallback"
+    enable_fallback_prediction: True
+  - max_history: 6
+    name: AugmentedMemoizationPolicy
+  - name: TEDPolicy
+    constrain_similarities: true
+    max_history: 10
+    epochs: 20
+    batch_size:
+      - 32
+      - 64
