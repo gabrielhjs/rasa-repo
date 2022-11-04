@@ -6,6 +6,9 @@ event_broker:
   type: addons.event_brokers.LogEventBroker
   credential: "test credential"
 
+action_endpoint:
+  url: http://rasa-sdk:5055/webhook
+
 lock_store:
     type: "redis"
     url: ${REDIS_HOST}

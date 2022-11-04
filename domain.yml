@@ -6,9 +6,11 @@ intents:
   - nega
   - despedida
   - informa
+  - responder_questionario
 
 entities:
   - PER
+  - questionnaire
 
 slots:
   handover:
@@ -24,6 +26,27 @@ slots:
     mappings:
       - type: from_entity
         entity: PER
+
+  fhir_questionnaire:
+    type: text
+    influence_conversation: false
+    mappings:
+      - type: custom
+
+  fhir_questionnaire_response:
+    type: text
+    influence_conversation: false
+    mappings:
+      - type: custom
+
+  fhir_questionnaire_item:
+    type: text
+    influence_conversation: false
+    mappings:
+      - type: custom
+
+actions:
+  - action_fhir_questionnaire
 
 responses:
   utter_how_are_you:

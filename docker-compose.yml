@@ -6,11 +6,12 @@ services:
       context: .
       dockerfile: ./docker/Rasa.Dockerfile
     environment:
-      SANIC_WORKERS: 1
-      LOG_LEVEL: DEBUG
+      SANIC_WORKERS: 2
+      LOG_LEVEL: WARN
       REDIS_HOST: redis
       REDIS_PORT: 6379
       REDIS_PASSWORD: eYVX7EwVmmxKPCDmwMtyKVge8oLd2t81
+      RUN_EVENT_CONSUMER_AS_SEPARATE_SERVICE: true
     ports:
       - "5005:5005"
     volumes:
@@ -18,27 +19,30 @@ services:
     depends_on:
       - redis
 
-#  rasa-sdk:
-#    build:
-#      context: .
-#      dockerfile: ./docker/RasaSDK.Dockerfile
-#    volumes:
-#      - ./actions:/app/actions
+  rasa-sdk:
+    build:
+      context: .
+      dockerfile: ./docker/RasaSDK.Dockerfile
+    volumes:
+      - ./actions:/app/actions
+    environment:
+      ACTION_SERVER_SANIC_WORKERS: 2
+      LOG_LEVEL_LIBRARIES: WARN
+      LOG_LEVEL: WARN
 
-#  postgres:
-#    image: postgres:latest
-#    restart: always
-#    environment:
-#      - POSTGRES_USER=postgres
-#      - POSTGRES_PASSWORD=postgres
-#    ports:
-#      - '5438:5432'
+  postgres:
+    image: postgres:latest
+    restart: always
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    ports:
+      - '5432'
 
   redis:
     image: redis:6.2-alpine
-    restart: always
     ports:
-      - '6379:6379'
-    command: redis-server --save 20 1 --loglevel warning --requirepass eYVX7EwVmmxKPCDmwMtyKVge8oLd2t81
+      - '6379'
+    command: redis-server --loglevel warning --requirepass eYVX7EwVmmxKPCDmwMtyKVge8oLd2t81
     volumes:
       - ./:/data

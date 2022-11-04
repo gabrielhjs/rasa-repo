@@ -1,0 +1,32 @@
+{
+  "text_example": {
+    "text": "asd"
+  },
+  "interactive_example": {
+	"interactive": {
+      "type": "button",
+      "body": {
+        "text": "textooooo"
+      },
+      "action": {
+        "buttons": [
+          {
+            "id": "2",
+            "type": "reply",
+            "title": "Tirar dúvidas"
+          },
+          {
+            "id": "1",
+            "type": "reply",
+            "title": "Informar sintomas"
+          },
+          {
+            "id": "falar com sua equipe",
+            "type": "reply",
+            "title": "Falar com sua equipe"
+          }
+        ]
+      }
+    }
+  }
+}

@@ -1,4 +1,4 @@
-FROM rasa/rasa:3.1.0-spacy-en
+FROM rasa/rasa:3.3.0-spacy-en
 
 SHELL ["/bin/bash", "-c"]
 
@@ -22,4 +22,4 @@ RUN rasa telemetry disable
 
 EXPOSE 5005
 
-CMD ["run", "-m", "./models", "--enable-api", "--debug"]
+CMD ["run", "-m", "./models", "--enable-api"]

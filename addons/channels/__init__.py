@@ -3,8 +3,12 @@ from .rest_health_check import HealthCheckInput
 
 
 class MyRestChannelHUL(MyRestChannelFactory):
-  channel_name = "hul"
+    channel_name = "hul"
 
 
 class MyRestChannelHMD(MyRestChannelFactory):
-  channel_name = "hmd"
+    channel_name = "hmd"
+
+
+class MyRestChannelHCPF(MyRestChannelFactory):
+    channel_name = "hcpf"

@@ -22,3 +22,8 @@ rules:
     steps:
     - intent: saudacao
     - action: utter_how_are_you
+
+  - rule: questionario
+    steps:
+      - intent: responder_questionario
+      - action: action_fhir_questionnaire

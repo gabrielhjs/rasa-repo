@@ -27,9 +27,10 @@ pipeline:
 
 policies:
   - name: RulePolicy
+
     core_fallback_threshold: 0.6
     core_fallback_action_name: "action_default_fallback"
-    enable_fallback_prediction: True
+    enable_fallback_prediction: False
   - max_history: 6
     name: AugmentedMemoizationPolicy
   - name: TEDPolicy
